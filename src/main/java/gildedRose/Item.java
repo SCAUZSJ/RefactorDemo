@@ -2,6 +2,9 @@ package gildedRose;
 
 public class Item {
 
+    public static final String AGED_BRIE = "Aged Brie";
+    public static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
+    public static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     private String name;
 
     private int sellIn;
@@ -19,11 +22,11 @@ public class Item {
 
     public Strategy newStrategy() {
         switch (this.name) {
-            case "Aged Brie":
+            case AGED_BRIE:
                 return new AgedBrieStrategy();
-            case "Backstage passes to a TAFKAL80ETC concert":
+            case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
                 return new BackstageStrategy();
-            case "Sulfuras, Hand of Ragnaros":
+            case SULFURAS_HAND_OF_RAGNAROS:
                 return new SulfurasStrategy();
             default:
                 return new OtherStrategy();
