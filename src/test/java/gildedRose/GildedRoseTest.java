@@ -102,26 +102,4 @@ public class GildedRoseTest {
         Assert.assertEquals(1,gildedRose.getItems()[0].getQuality());
     }
 
-//    @Test
-//    public void test(){
-//        for(int i=-2;i<4;i++){
-//            for(int j=-1;j<12;j++){
-//                Item[] items = new Item[]{new Item("other",j,i)};
-//                GildedRose gildedRose = new GildedRose(items);
-//                gildedRose.updateQuality();
-//
-//
-//                if(i == gildedRose.getItems()[0].getQuality()){
-//                    continue;
-//                }
-//                System.out.print("Q="+i+",S="+j+" -> ");
-//                System.out.print(gildedRose.getItems()[0].getQuality());
-//                System.out.print(",");
-//                System.out.println(gildedRose.getItems()[0].getSellIn());
-//            }
-//        }
-//    }
-
-
-
 }
