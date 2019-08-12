@@ -8,6 +8,8 @@ public class Item {
 
     private int quality;
 
+    private
+
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
