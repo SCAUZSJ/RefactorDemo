@@ -123,7 +123,7 @@ public class CustomerTest {
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n" +
                 "Titanic: 6.0<BR>\n" +
                 "<P>You owe<EM>6.0</EM><P>\n" +
-                "On this rental you earned <EM>1</EM> frequent renter points<P>", statement);
+                "On this rental you earned <EM>1.5</EM> frequent renter points<P>", statement);
     }
 }
 

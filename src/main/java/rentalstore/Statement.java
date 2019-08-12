@@ -26,22 +26,19 @@ public abstract class Statement {
         return ((each.getMovie() instanceof NewReleaseMovie) && (each.getDayRented()>1));
     }
 
-    protected int getFrequentRenterPoint(Customer customer) {
-        int frequentRenterPoints = 0;
-        for (Rental each :customer.getRentals()){
-            frequentRenterPoints++;
-            if(isNewReleaseAndMoreOneDay(each)){
-                frequentRenterPoints++;
-            }
-            if(isArtMovie(each)){
-                frequentRenterPoints += 0.5;
-            }
-        }
-        return frequentRenterPoints;
+    protected String getFrequentRenterPoint(Customer customer) {
+        double frequentRenterPoint = customer.getRentals().stream().mapToDouble(Rental::getFrequentRenterPoint).sum();
+        if(isDouble(frequentRenterPoint)) return String.valueOf(frequentRenterPoint);
+        return String.valueOf((int)frequentRenterPoint);
     }
 
     protected boolean isArtMovie(Rental each){
         return each.getMovie() instanceof ArtMovie;
     }
+
+    protected boolean isDouble(double num) {
+        return !(num - Math.floor(num) < (1e-10));
+    }
+
 
 }

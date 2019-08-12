@@ -7,4 +7,9 @@ public class NewReleaseMovie extends Movie {
     public double getAmount(Rental each) {
         return each.getDayRented() * 3;
     }
+
+    @Override
+    public double getFrequentRenterPoint(Rental rental) {
+        return rental.getDayRented()>1 ? 2:1;
+    }
 }

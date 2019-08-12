@@ -4,8 +4,8 @@ public class StatementHtml extends Statement {
 
     @Override
     protected String getFooter(Customer customer) {
-        String result = "<P>You owe<EM>" + String.valueOf(getTotalAmount(customer)) + "</EM><P>\n";
-        result += "On this rental you earned <EM>" + String.valueOf(getFrequentRenterPoint(customer)) +
+        String result = "<P>You owe<EM>" + getTotalAmount(customer) + "</EM><P>\n";
+        result += "On this rental you earned <EM>" + getFrequentRenterPoint(customer) +
                 "</EM> frequent renter points<P>";
         return result;
     }

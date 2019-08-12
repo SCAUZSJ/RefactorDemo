@@ -11,4 +11,9 @@ public class ChildMovie extends Movie {
         }
         return amount;
     }
+
+    @Override
+    public double getFrequentRenterPoint(Rental rental) {
+        return 1;
+    }
 }

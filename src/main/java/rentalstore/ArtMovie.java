@@ -9,4 +9,9 @@ public class ArtMovie extends Movie {
     public double getAmount(Rental each) {
         return each.getDayRented() * 6.0;
     }
+
+    @Override
+    public double getFrequentRenterPoint(Rental rental) {
+        return 1.5;
+    }
 }

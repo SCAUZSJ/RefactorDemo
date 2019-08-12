@@ -11,5 +11,7 @@ public abstract class Movie {
         return title;
     }
 
-    public abstract double getAmount(Rental each);
+    public abstract double getAmount(Rental rental);
+
+    public abstract double getFrequentRenterPoint(Rental rental);
 }
