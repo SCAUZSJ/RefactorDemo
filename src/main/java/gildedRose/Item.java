@@ -13,8 +13,15 @@ public class Item {
         this.sellIn = sellIn;
         this.quality = quality;
     }
+    public int getSellIn() {
+        return sellIn;
+    }
 
-   @Override
+    public int getQuality() {
+        return quality;
+    }
+
+    @Override
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
