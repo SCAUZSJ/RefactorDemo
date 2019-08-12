@@ -70,14 +70,10 @@ public class GildedRose {
     }
 
     private void handleAgedBrie(Item item) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-        }
-        item.sellIn = item.sellIn - 1;
-        if (item.sellIn < 0) {
-            if(item.quality < 50) {
-                item.quality = item.quality + 1;
-            }
-        }
+       if(item.getSellIn()<1){
+           item.quality=Math.min(item.quality+2,50);
+       }
+       item.quality=Math.min(item.quality+1,50);
+       item.sellIn--;
     }
 }
