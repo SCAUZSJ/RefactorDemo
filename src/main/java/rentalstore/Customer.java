@@ -19,45 +19,19 @@ public class Customer {
         return name;
     }
 
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
     public String statement() {
-        String result = getHeader();
-        for (Rental each : this.rentals) {
-            result += getEachRental(each,each.getMovieAmount());
-        }
-        result += getFooter();
-        return result;
+
+        return new StatementText().getStatement(this);
+    }
+    public String htmlStatement(){
+        return new StatementHtml().getStatement(this);
     }
 
-    private double getTotalAmount() {
-        return this.rentals.stream().mapToDouble(Rental::getMovieAmount).sum();
-    }
 
-    private boolean isNewReleaseAndMoreOneDay(Rental each) {
-        return ((each.getMovie() instanceof NewReleaseMovie) && (each.getDayRented()>1));
-    }
 
-    private String getEachRental(Rental each, double thisAmount) {
-        return "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-    }
 
-    private String getHeader() {
-        return "Rental Record for " + getName() + "\n";
-    }
-
-    private String getFooter() {
-        String footer = "Amount owed is " + getTotalAmount() + "\n";
-        footer += "You earned " + getFrequentRenterPoint() + " frequent renter points";
-        return footer;
-    }
-
-    private int getFrequentRenterPoint() {
-        int frequentRenterPoints = 0;
-        for (Rental each :this.rentals){
-            frequentRenterPoints++;
-            if(isNewReleaseAndMoreOneDay(each)){
-                frequentRenterPoints++;
-            }
-        }
-        return frequentRenterPoints;
-    }
 }
