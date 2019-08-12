@@ -25,22 +25,16 @@ public class GildedRose {
             if(items[i].name.equals("Sulfuras, Hand of Ragnaros")){
                 continue;
             }
-
-
             handleOther(items[i]);
         }
     }
 
     private void handleOther(Item item) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
+        if(item.sellIn < 1){
+            item.quality = Math.max(item.quality-2,0);
         }
-        item.sellIn = item.sellIn - 1;
-        if (item.sellIn < 0) {
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
-        }
+        item.quality = Math.max(item.quality-1,0);
+        item.sellIn--;
     }
 
     private void handleBackstagePasses(Item item) {
