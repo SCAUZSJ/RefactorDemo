@@ -1,91 +1,103 @@
 package rentalstore;
-import org.junit.Assert;
+
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.assertEquals;
 public class CustomerTest {
+    private Customer customer = new Customer("Jerry");
 
     @Test
-    public void should_return_right_statement_when_customer_no_rent_book() {
-        Customer customer = new Customer("milo");
-        String out = customer.statement();
-        Assert.assertEquals("Rental Record for milo\n" +
+    public void should_return_correct_statement_given_customer_has_no_rental() {
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
                 "Amount owed is 0.0\n" +
-                "You earned 0 frequent renter points",out);
+                "You earned 0 frequent renter points", statement);
     }
 
     @Test
-    public void should_return_right_statement_when_customer_rent_one_regular_movie_for_1_day(){
+    public void should_return_correct_statement_given_customer_has_rent_one_regular_movie_for_1_day() {
+        Movie regularMovie = new RegularMovie("Titanic" );
+        Rental oneDayRental = new Rental(regularMovie, 1);
+        customer.addRental(oneDayRental);
 
-        Customer customer = new Customer("milo");
-        customer.addRental(new Rental(new Movie("movie_regular",Movie.REGULAR),1));
-        String out = customer.statement();
-        Assert.assertEquals("Rental Record for milo\n" +
-                "\tmovie_regular\t2.0\n" +
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tTitanic\t2.0\n" +
                 "Amount owed is 2.0\n" +
-                "You earned 1 frequent renter points",out);
+                "You earned 1 frequent renter points", statement);
     }
 
     @Test
-    public void should_return_right_statement_when_customer_rent_one_regular_movie_for_4_day() {
-        Customer customer = new Customer("milo");
-        customer.addRental(new Rental(new Movie("movie_regular",Movie.REGULAR),4));
-        String out = customer.statement();
+    public void should_return_correct_statement_given_customer_has_rent_one_regular_movie_for_3_day() {
+        Movie regularMovie = new RegularMovie("Titanic");
+        Rental threeDayRental = new Rental(regularMovie, 3);
+        customer.addRental(threeDayRental);
 
-        Assert.assertEquals("Rental Record for milo\n" +
-                "\t" + "movie_regular" + "\t5.0\n" +
-                "Amount owed is 5.0\n" +
-                "You earned 1 frequent renter points", out);
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tTitanic\t3.5\n" +
+                "Amount owed is 3.5\n" +
+                "You earned 1 frequent renter points", statement);
     }
 
     @Test
-    public void should_return_right_statement_when_customer_rent_one_new_release_movie_for_1_day() {
-        Customer customer = new Customer("milo");
-        customer.addRental(new Rental(new Movie("movie_new_release",Movie.NEW_RELEASE),1));
-        String out = customer.statement();
+    public void should_return_correct_statement_given_customer_has_rent_one_new_release_movie_for_1_day() {
+        Movie newReleaseMovie = new NewReleaseMovie("Titanic");
+        Rental oneDayRental = new Rental(newReleaseMovie, 1);
+        customer.addRental(oneDayRental);
 
-        Assert.assertEquals("Rental Record for milo\n" +
-                "\tmovie_new_release\t3.0\n" +
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tTitanic\t3.0\n" +
                 "Amount owed is 3.0\n" +
-                "You earned 1 frequent renter points", out);
+                "You earned 1 frequent renter points", statement);
     }
-    @Test
-    public void should_return_right_statement_when_customer_rent_one_new_release_movie_for_2_day() {
-        Customer customer = new Customer("milo");
-        customer.addRental(new Rental(new Movie("movie_new_release",Movie.NEW_RELEASE),2));
-        String out = customer.statement();
 
-        Assert.assertEquals("Rental Record for milo\n" +
-                "\tmovie_new_release\t6.0\n" +
+    @Test
+    public void should_return_correct_statement_given_customer_has_rent_one_new_release_movie_for_2_day() {
+        Movie newReleaseMovie = new NewReleaseMovie("Titanic");
+        Rental twoDayRental = new Rental(newReleaseMovie, 2);
+        customer.addRental(twoDayRental);
+
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tTitanic\t6.0\n" +
                 "Amount owed is 6.0\n" +
-                "You earned 2 frequent renter points", out);
+                "You earned 2 frequent renter points", statement);
     }
 
     @Test
-    public void should_return_right_statement_when_customer_rent_one_child_movie_for_1_day() {
-        Customer customer = new Customer("milo");
-        customer.addRental(new Rental(new Movie("movie_child_movie",Movie.CHILDRENS),1));
-        String out = customer.statement();
+    public void should_return_correct_statement_given_customer_has_rent_one_child_movie_for_1_day() {
+        Movie childrenMovie = new ChildMovie("Titanic");
+        Rental oneDayRental = new Rental(childrenMovie, 1);
+        customer.addRental(oneDayRental);
 
-        Assert.assertEquals("Rental Record for milo\n" +
-                "\tmovie_child_movie\t1.5\n" +
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tTitanic\t1.5\n" +
                 "Amount owed is 1.5\n" +
-                "You earned 1 frequent renter points", out);
+                "You earned 1 frequent renter points", statement);
     }
 
     @Test
-    public void should_return_right_statement_when_customer_rent_one_child_movie_for_4_day() {
-        Customer customer = new Customer("milo");
-        customer.addRental(new Rental(new Movie("movie_child_movie",Movie.CHILDRENS),4));
-        String out = customer.statement();
+    public void should_return_correct_statement_given_customer_has_rent_one_child_movie_for_4_day() {
+        Movie childrenMovie = new ChildMovie("Titanic");
+        Rental fourDayRental = new Rental(childrenMovie, 4);
+        customer.addRental(fourDayRental);
 
-        Assert.assertEquals("Rental Record for milo\n" +
-                "\tmovie_child_movie\t3.0\n" +
+        String statement = customer.statement();
+
+        assertEquals("Rental Record for Jerry\n" +
+                "\tTitanic\t3.0\n" +
                 "Amount owed is 3.0\n" +
-                "You earned 1 frequent renter points", out);
+                "You earned 1 frequent renter points", statement);
     }
-
 }
+
