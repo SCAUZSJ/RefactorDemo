@@ -56,28 +56,24 @@ public class GildedRose {
     }
 
     private void handleBackstagePasses(Item item) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
 
-            if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.sellIn < 11) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-
-                if (item.sellIn < 6) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-            }
+        item.sellIn--;
+        if(item.sellIn < 0) {
+            item.quality = 0;
+            return;
         }
-        item.sellIn = item.sellIn - 1;
-
-        if (item.sellIn < 0) {
-            item.quality = item.quality - item.quality;
+        if(item.sellIn < 5){
+            item.quality = Math.min(item.quality + 3, 50);
+            return;
         }
+        if(item.sellIn < 10){
+            item.quality = Math.min(item.quality + 2, 50);
+            return;
+        }
+        if(item.sellIn >= 10){
+            item.quality = Math.min(item.quality + 1, 50);
+        }
+
     }
 
     private void handleAgedBrie(Item item) {
