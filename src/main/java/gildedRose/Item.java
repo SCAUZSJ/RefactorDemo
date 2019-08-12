@@ -8,12 +8,28 @@ public class Item {
 
     private int quality;
 
+    private Strategy strategy;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        this.strategy = newStrategy();
     }
+
+    public Strategy newStrategy() {
+        switch (this.name) {
+            case "Aged Brie":
+                return new AgedBrieStrategy();
+            case "Backstage passes to a TAFKAL80ETC concert":
+                return new BackstageStrategy();
+            case "Sulfuras, Hand of Ragnaros":
+                return new SulfurasStrategy();
+            default:
+                return new OtherStrategy();
+        }
+    }
+
     public int getSellIn() {
         return sellIn;
     }
@@ -30,12 +46,12 @@ public class Item {
         this.quality = quality;
     }
 
-    public String getName() {
-        return name;
+    public void change(){
+        this.strategy.doChange(this);
     }
 
     @Override
-   public String toString() {
+    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 }
